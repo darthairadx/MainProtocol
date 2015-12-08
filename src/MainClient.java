@@ -37,9 +37,9 @@ public class MainClient {
 
         try { //sometimes, what is read cannot be compiled by java
             // Read image from file
-            String original_f="D:\\me.jpg";
-            System.out.println("Reading image from " + original_f);
-            BufferedImage img = ImageIO.read(new File(original_f));
+            String fileName="D:\\me.jpg";
+            System.out.println("Reading image from " + fileName);
+            BufferedImage img = ImageIO.read(new File(fileName));
 
             // Tell the server we want to process an image.
             System.out.println("Sending image");
@@ -50,9 +50,6 @@ public class MainClient {
 
             BufferedImage processedImage = MainProtocol.getImageFromStream(in); //read the result from server
             System.out.println("Received processed result.");
-
-            ImageIO.write(processedImage, "jpg", new File("D:\\processed.jpg"));
-            System.out.println("Saved processed result.");
 
             out.write(MainProtocol.QUIT);
         } catch (IOException e) {
